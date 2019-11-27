@@ -16,12 +16,27 @@ const router = Router();
 const db = admin.database();
 // pagina de inicio
 router.get('/',(req,res)=>{
-    res.render('index');
+    db.ref('Usuario').once('value',(snapshot)=>{
+        const usuarios = snapshot.numChildren();
+        res.render('index', {cantidadDeUsuarios:usuarios});
+    })
 })
 
 // ruta para registrar usuarios
+router.get('/login',(req,res)=>{
+    res.render('auth/login');
+})
+//ruta para el login
 router.get('/registrar',(req,res)=>{
     res.render('auth/registrar');
+})
+
+// ruta para mostrar lista de usuarios
+router.get('/listarUsuarios', (req,res)=>{
+    db.ref('Usuario').once('value',(snapshot)=>{
+            const data = snapshot.val()
+            res.render('userLists', {usuarios:data})
+    })
 })
 
 router.post('/registrarUsuario', (req,res)=>{
