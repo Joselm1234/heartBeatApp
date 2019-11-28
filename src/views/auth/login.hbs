@@ -7,16 +7,16 @@
 					</span>
 				</div>
 
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" method="POST" action="/auth">
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Correo electronico requerido">
 						<span class="label-input100">Correo electronico</span>
-						<input class="input100" type="emal" name="username" placeholder="ejemplo@email.com">
+						<input class="input100" type="emal" name="email" placeholder="ejemplo@email.com">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-18" data-validate = "Contraseña requerida">
 						<span class="label-input100">Contraseña</span>
-						<input class="input100" type="password" name="pass" placeholder="Contraseña">
+						<input class="input100" type="password" name="password" placeholder="Contraseña">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -36,7 +36,7 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" type="submit">
 							Entrar
 						</button>
 					</div>
