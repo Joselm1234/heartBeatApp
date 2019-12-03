@@ -1,80 +1,153 @@
-const admin = require('firebase-admin');
-
-var serviceAccount = require("../../daBConnection/heartbeatapp7-firebase-adminsdk-gykhk-c5e64a1d2b.json");
-admin.initializeApp({
-    // credential: admin.credential.applicationDefault(),
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: 'https://heartbeatapp7.firebaseio.com/'
-});
-
 
 const { Router } = require('express');
 const router = Router();
+var firebase = require("firebase");
 
-const db = admin.database();
-var user = admin.auth().currentUser;
+require("firebase/auth");
+require("firebase/firestore");
+
+// configuracion de la conecsion con firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyA_djeuNUIgtJ4tk5HQvXAk75woOILe1ts",
+    authDomain: "heartbeatapp7.firebaseapp.com",
+    databaseURL: "https://heartbeatapp7.firebaseio.com",
+    projectId: "heartbeatapp7",
+    storageBucket: "heartbeatapp7.appspot.com",
+    messagingSenderId: "199806822412",
+    appId: "1:199806822412:web:e7ac270d543ec9c4456629",
+    measurementId: "G-3GWR0EL2DG"
+};
+
+// Inicializando base de datos
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.database()
+
+
+// verifica si hay un logeado
+var user;
+firebase.auth().onAuthStateChanged((data) => {
+    user = data
+    // console.log(user);
+})
 
 // pagina de inicio
 router.get('/', (req, res) => {
-
+    // console.log(user)
     if (user) {
+        //extrae de la base de datos los usuarios moviles y los cuenta
         db.ref('Usuario').once('value', (snapshot) => {
             const usuarios = snapshot.numChildren();
             res.render('index', { cantidadDeUsuarios: usuarios });
-        });
+        })
     } else {
-        res.render('auth/login');
+        res.redirect('login')
     }
+
+    // console.log(user)
+
 });
 
-//ruta para el login
-router.get('/login', (req, res) => {
-    if (!user) {
-        res.render('auth/login');
-    } else {
-        res.render('/');
-    }
-});
-
-// ruta para registrar usuarios
+// mostrar formulario registro de usuarios
 router.get('/registrar', (req, res) => {
-    res.render('auth/registrar');
+    if (user) {
+
+        res.render('auth/registrar');
+    } else {
+
+        res.redirect('login')
+
+    }
 });
 
-// ruta para mostrar lista de usuarios
-router.get('/listarUsuarios', (req, res) => {
-    db.ref('Usuario').once('value', (snapshot) => {
-        const data = snapshot.val()
-        res.render('userLists', { usuarios: data })
-    });
-});
 
+// registrar un usuario web
 router.post('/registrarUsuario', (req, res) => {
     const newUser = {
         nombre: req.body.nombre,
         apellido: req.body.apellido,
         telefono: req.body.telefono,
-        correo: req.body.correo,
-        password: req.body.password
+        correo: req.body.correo
     };
 
-    //console.log(db.ref('usuariosWeb').isEqual(newUser).nombre);
-    console.log(newUser);
 
-    db.ref('usersWeb').push(newUser);
-    res.render('index');
-});
+    firebase.auth().createUserWithEmailAndPassword(newUser.correo, req.body.password).then((res) => {
+        console.log(res)
+        db.ref('usersWeb').push(newUser);
+    }).catch((err) => {
+        console.error(err)
+    })
+    res.render('auth/registrar')
+})
+
+// mostrar el login 
+router.get('/login', (req, res) => {
+    if (user) {
+        res.redirect('/');
+    } else {
+
+        res.render('auth/login')
+    }
+})
+
+
+// login auth
 
 router.post('/auth', (req, res) => {
-
-    var ref = db.ref();
-    var userRef = ref.child('usersWeb');
-    console.log(userRef.toJSON());
-    userRef.orderByChild('correo').equalTo(req.body.email).on('child_added', function(snapshot) {
-        console.log(snapshot.val());
+    var email = req.body.email;
+    var pass = req.body.password;
+    var error;
+        
+   let userFetch = false;
+    db.ref('usersWeb').orderByChild('correo').equalTo(email).on('child_added',(snapshot)=>{
+            userFetch = true
     });
 
+    if(userFetch){
+
+        firebase.auth().signInWithEmailAndPassword(email, pass).then((data)=>{
+            console.log(data)
+            res.render('index');
+        }).catch((err)=> {
+            error = err.code;
+            res.render('auth/login',{error:'Usuario o Contraeña incorrecta'}); 
+            error  = ''
+          });
+      
+    } else {
+
+        res.render('auth/login',{error:'Usuario o Contraeña incorrecta'}); 
+        error = ''
+      
+    }
 });
+
+router.get('/salir', (req, res) => {
+
+    firebase.auth().signOut().then((data) => {
+        res.redirect('login')
+    }).catch((error) => {
+        console.error(error);
+        var errorCode = error.code;
+        var errorMessage = error.message;
+    })
+})
+
+
+// lista usuarios de la app movil
+
+router.get('/listarUsuarios', (req, res) => {
+    if (user) {
+        db.ref('Usuario').once('value', (snapshot) => {
+            const data = snapshot.val()
+            res.render('userLists', { usuarios: data })
+        });
+    } else {
+        res.redirect('login')
+    }
+});
+
+
 
 
 module.exports = router;
