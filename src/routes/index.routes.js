@@ -122,6 +122,8 @@ router.post('/auth', (req, res) => {
     }
 });
 
+
+// cerrar sesion
 router.get('/salir', (req, res) => {
 
     firebase.auth().signOut().then((data) => {
