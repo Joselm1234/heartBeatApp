@@ -1,9 +1,15 @@
+
 const express = require('express');
 const path = require('path');
 const exphbs = require('express-handlebars');
 const morgan = require('morgan');
 
 const app = express();
+// Initialize Firebase
+
+
+
+
 
 
 // Settings
