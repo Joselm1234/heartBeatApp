@@ -19,8 +19,11 @@ const firebaseConfig = {
     measurementId: "G-3GWR0EL2DG"
 };
 
+
 // Inicializando base de datos
 firebase.initializeApp(firebaseConfig);
+
+
 const db = firebase.database()
 // Initialize Firebase
 
@@ -111,13 +114,13 @@ router.post('/auth', (req, res) => {
             res.render('index');
         }).catch((err)=> {
             error = err.code;
-            res.render('auth/login',{error:'Usuario o Contraeña incorrecta'}); 
+            res.render('auth/login',{error:'Usuario o Contraseña incorrecta'}); 
             error  = ''
           });
       
     } else {
 
-        res.render('auth/login',{error:'Usuario o Contraeña incorrecta'}); 
+        res.render('auth/login',{error:'Usuario o Contraseña incorrecta'}); 
         error = ''
       
     }

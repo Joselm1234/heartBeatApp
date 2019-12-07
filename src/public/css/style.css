@@ -464,6 +464,7 @@ Googel Fonts  */
 }
 
 body {
+    margin: 0%;
     display: table;
     font-family: "Open Sans", sans-serif;
     font-size: 16px;

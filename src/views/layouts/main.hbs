@@ -18,9 +18,7 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-    <!--diseño para el login-->
-    <link rel="stylesheet" type="text/css" href="css/util.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    
 
     <link rel="stylesheet" href="./css/cs-skin-elastic.css">
 
@@ -28,15 +26,17 @@
     <link rel="stylesheet" href="./css/style.css">
 
     <!--Datatable css-->
-
+    
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-messaging.js"></script>
+    <!--diseño para el login-->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
 
 
     <script>
 
-        if ('serviceWorker' in navigator) {
+          if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/firebase-messaging-sw.js')
                 .then(function (registration) {
                     console.log('Registration successful, scope is:', registration.scope);
@@ -108,7 +108,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 
-    <h2>This is a test page</h2>
+   <h2>This is a test page</h2>
     <div id="token" style="color:lightblue"></div>
     <div id="message" style="color:lightblue"></div>
     <div id="notification" style="color:green"></div>
@@ -122,7 +122,28 @@
     <button class="btn btn-primary" onclick="initFirebaseMessagingRegistration()">Enable Firebase Messaging</button>
     <script>
         $(document).ready(function () {
-            $('.table').DataTable();
+            $('.table').DataTable({
+                language: {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Entradas",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                },
+            });
         });
     </script>
 </body>

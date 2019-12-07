@@ -15,7 +15,7 @@
                         <a href="/registrar"><i class="menu-icon fa ti-plus"></i>Registrar</a>
                     </li>
                     <li class="#">
-                        <a href="/login"><i class="menu-icon fa ti-power-off"></i>Salir</a>
+                        <a href="/salir"><i class="menu-icon fa ti-power-off"></i>Salir</a>
                     </li>
                     <!-- /.menu-title -->
                     
@@ -130,7 +130,6 @@
         </header>
         <!-- /#header -->
 <!-- Content -->
-
         <div class="content">
             <div class="animated fadeIn">
 
@@ -145,23 +144,23 @@
                                     <form action="/registrarUsuario" method="POST">
                                         <div class="has-success form-group">
                                             <label for="nombre" class=" form-control-label">Nombre  <span style="color: #fa1414;"> *</span></label>
-                                            <input type="text" name= "nombre" id="inputSuccess2i" class="form-control-success form-control" required>
+                                            <input type="text" name= "nombre" id="inputSuccess2i" class="form-control-success form-control" required placeholder="Nombre">
                                         </div>
                                         <div class="has-warning form-group">
                                             <label for="inputWarning2i" class=" form-control-label">Apellido  <span style="color: #fa1414;"> *</span></label>
-                                            <input type="text" name="apellido" id="apellido" class="form-control-warning form-control" required>
+                                            <input type="text" name="apellido" id="apellido" class="form-control-warning form-control" placeholder="Apellido" required>
                                         </div>
                                         <div class="has-danger has-feedback form-group">
                                             <label for="inputError2i" class=" form-control-label">Telefono <span style="color: #fa1414;"> *</span></label>
-                                            <input type="number"  name="telefono" id="telefono" class="form-control-danger form-control" required>
+                                            <input type="number"  name="telefono" id="telefono" class="form-control-danger form-control" placeholder="809-999-9999" required>
                                         </div>
                                         <div class="has-danger has-feedback form-group">
                                             <label for="inputError2i" class=" form-control-label">Correo electronico  <span style="color: #fa1414;"> *</span></label>
-                                            <input type="email" name="correo" id="correo" class="form-control-danger form-control" required>
+                                            <input type="email" name="correo" id="correo" class="form-control-danger form-control" placeholder="ejemplo@gmail.com" required>
                                         </div>
                                         <div class="has-danger has-feedback form-group">
                                             <label for="inputError2i" class=" form-control-label">contraseña <span style="color: #fa1414;"> *</span></label>
-                                            <input type="password" name="password" id="contraseña" class="form-control-danger form-control" required>
+                                            <input type="password" name="password" id="contraseña" class="form-control-danger form-control" placeholder="Contraseña" required>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Guardar</button>
                                         <button  class="btn btn-danger">Cancelar</button>
