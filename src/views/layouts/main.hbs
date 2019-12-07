@@ -19,6 +19,10 @@
         href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.12.0/css/alertify.min.css">
+    <!--diseño para el login-->
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
 
     <link rel="stylesheet" href="./css/cs-skin-elastic.css">
 
@@ -34,6 +38,7 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.12.0/alertify.min.js"></script>
     <script>
 
           if ('serviceWorker' in navigator) {
@@ -63,7 +68,8 @@
                     errorElement.innerHTML = "Error: " + err;
                     console.log("Didn't get notification permission", err);
                 });
-        }
+            }
+        
         messaging.onMessage(function (payload) {
             console.log("Message received. ", JSON.stringify(payload));
             notificationElement.innerHTML = notificationElement.innerHTML + " " + payload.data.notification;
@@ -78,6 +84,7 @@
                     console.log('Unable to retrieve refreshed token ', err);
                 });
         });
+        
     </script>
 
 
