@@ -6,6 +6,7 @@ var firebase = require("firebase");
 require("firebase/auth");
 require("firebase/firestore");
 
+
 // configuracion de la conecsion con firebase
 const firebaseConfig = {
     apiKey: "AIzaSyA_djeuNUIgtJ4tk5HQvXAk75woOILe1ts",
@@ -20,8 +21,8 @@ const firebaseConfig = {
 
 // Inicializando base de datos
 firebase.initializeApp(firebaseConfig);
-
 const db = firebase.database()
+// Initialize Firebase
 
 
 // verifica si hay un logeado
