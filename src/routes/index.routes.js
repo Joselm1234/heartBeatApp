@@ -3,6 +3,7 @@ const { Router } = require('express');
 const router = Router();
 var firebase = require("firebase");
 
+require("firebase/messaging");
 require("firebase/auth");
 require("firebase/firestore");
 
@@ -19,13 +20,11 @@ const firebaseConfig = {
     measurementId: "G-3GWR0EL2DG"
 };
 
-
 // Inicializando base de datos
 firebase.initializeApp(firebaseConfig);
 
-
+// variable para consultas de la bese de datos
 const db = firebase.database()
-// Initialize Firebase
 
 
 // verifica si hay un logeado
@@ -111,7 +110,7 @@ router.post('/auth', (req, res) => {
 
         firebase.auth().signInWithEmailAndPassword(email, pass).then((data)=>{
             console.log(data)
-            res.render('index');
+            res.redirect('/');
         }).catch((err)=> {
             error = err.code;
             res.render('auth/login',{error:'Usuario o Contraseña incorrecta'}); 
