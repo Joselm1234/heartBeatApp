@@ -3423,5 +3423,12 @@ footer.site-footer .footer-inner a {
     right: 20px !important;
 }
 
+.over-flow {
+    overflow: auto;
+    width: 300px;
+    height: 335px;
+    margin-left: -10px;
+}
+
 
 /*# sourceMappingURL=style.css.map */

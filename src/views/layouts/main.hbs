@@ -23,7 +23,7 @@
     <!--diseño para el login>
     <link rel="stylesheet" href="css/util.css">
     <link rel="stylesheet" href="css/main.css"-->
-
+    
     <link rel="stylesheet" href="./css/cs-skin-elastic.css">
 
 
@@ -41,6 +41,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.12.0/alertify.min.js"></script>
 
     <script>
+        
         if ('serviceWorker' in navigator) {
             // Register service worker
 
@@ -54,11 +55,15 @@
         var messaging = firebase.messaging();
 
         function initFirebaseMessagingRegistration() {
+            alertify.error('zxc');
+            
             messaging.requestPermission()
+            
                 .then(function () {
                     messageElement.innerHTML = "Got notification permission";
                     console.log("Got notification permission");
                     return messaging.getToken();
+                   
                 })
                 .then(function (token) {
                     // print the token on the HTML page
@@ -101,11 +106,12 @@
     <script src="./js/main.js"></script>
     <!--<script src="./base/vendor.bundle.base.js"></script> -->
     <!-- endinject -->
+
     <!-- Plugin js for this page-->
     <script src="./chart.js/Chart.min.js"></script>
 
     <!-- Custom js for this page-->
-    <!--script src="./chart.js/chart.js"></script-->
+    <script src="./chart.js/chart.js"></script>
     <script src="./chart.js/jquery-1.12.4.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -152,6 +158,22 @@
                 },
             });
         });
+    </script>
+
+    <script>
+        //recuperar contreaseña
+        var recorverPass = function(){
+            console.log('hola');
+            var auth = firebase.auth();
+            var emailAddress = $('email').val();
+
+            auth.sendPasswordResetEmail(emailAddress)
+            .then(function(){
+                alert('Se ha enviado un correo a su cuenta siga los paso');
+            },function(error){
+                console.log(error);
+            })
+        };
     </script>
 </body>
 
