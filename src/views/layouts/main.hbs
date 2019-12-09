@@ -71,9 +71,12 @@
         }
 
         messaging.onMessage(function (payload) {
-            console.log("Message received. ", JSON.stringify(payload));
-            notificationElement.innerHTML = notificationElement.innerHTML + " " + payload.data.notification;
+             console.log("Message received. ", JSON.stringify(payload));
+            const notification = JSON.stringify(payload);
+            notificationElement.innerHTML = notificationElement.innerHTML + " " + notification;
+            
         });
+
         messaging.onTokenRefresh(function () {
             messaging.getToken()
                 .then(function (refreshedToken) {
