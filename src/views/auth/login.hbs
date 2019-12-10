@@ -20,6 +20,7 @@
               <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
             </div>
             <input type="password" class="form-control" name="password" placeholder="Escribe tu contraseña" required>
+            <input type="hidden" name="token" id="token" value="">
         </div>
 
       
@@ -33,10 +34,16 @@
 			{{/if}}
             <a href="#" class="forgot-link">Olvide mi contraseña</a>
         </div> 
-        <button class="btn btn-danger btn-block btn-lg"type="submit">
+        
+        <button class="btn btn-danger btn-block btn-lg" type="button" id="btnSubmit" style="display:none">
             Iniciar Sesion
         </button>
+        <button class="btn btn-danger btn-block btn-lg"  onclick="initFirebaseMessagingRegistration()">
+            Iniciar Sesion
+        </button>
+
                   
     </form>			
    
 </div>
+    <!--div id="token1" style="color:lightblue"></div-->

@@ -3,7 +3,7 @@ const { Router } = require('express');
 const router = Router();
 var firebase = require("firebase");
 
-require("firebase/messaging");
+
 require("firebase/auth");
 require("firebase/firestore");
 
@@ -18,7 +18,9 @@ const firebaseConfig = {
     messagingSenderId: "199806822412",
     appId: "1:199806822412:web:e7ac270d543ec9c4456629",
     measurementId: "G-3GWR0EL2DG"
-};
+  };
+
+  
 
 // Inicializando base de datos
 firebase.initializeApp(firebaseConfig);
@@ -98,17 +100,22 @@ router.get('/login', (req, res) => {
 router.post('/auth', (req, res) => {
     var email = req.body.email;
     var pass = req.body.password;
+    var token = req.body.token;
     var error;
-        
-   let userFetch = false;
+   // console.log("el token funciona: ",token)
+    let userFetch = false;
     db.ref('usersWeb').orderByChild('correo').equalTo(email).on('child_added',(snapshot)=>{
             userFetch = true
+            // console.log(snapshot.val())
     });
+    db.ref('usersWeb/' + "-Lv3CPbTI4GopEm1PawL" + '/token').set(token);
+
+
 
     if(userFetch){
 
         firebase.auth().signInWithEmailAndPassword(email, pass).then((data)=>{
-            console.log(data)
+            // console.log(data)
             res.redirect('/');
         }).catch((err)=> {
             error = err.code;
