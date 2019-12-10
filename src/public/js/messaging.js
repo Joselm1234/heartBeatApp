@@ -31,7 +31,7 @@ function initFirebaseMessagingRegistration() {
             //console.log(token)
             document.getElementById("btnSubmit").type = "submit";
             document.getElementById("btnSubmit").click();
-            tokenElement.innerHTML = "Token is " + token;
+            // tokenElement.innerHTML = "Token is " + token;
         })
         .catch(function(err) {
             //errorElement.innerHTML = "Error: " + err;
@@ -75,9 +75,9 @@ messaging.onTokenRefresh(function() {
     messaging.getToken()
         .then(function(refreshedToken) {
             console.log('Token refreshed.');
-            tokenElement.innerHTML = "Token is " + refreshedToken;
+            //tokenElement.innerHTML = "Token is " + refreshedToken;
         }).catch(function(err) {
-            errorElement.innerHTML = "Error: " + err;
+            //errorElement.innerHTML = "Error: " + err;
             console.log('Unable to retrieve refreshed token ', err);
         });
 });

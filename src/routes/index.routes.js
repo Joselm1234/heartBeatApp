@@ -1,4 +1,3 @@
-
 const { Router } = require('express');
 const router = Router();
 var firebase = require("firebase");
@@ -33,7 +32,7 @@ const db = firebase.database()
 var user;
 firebase.auth().onAuthStateChanged((data) => {
     user = data
-    // console.log(user);
+        // console.log(user);
 })
 
 // pagina de inicio
@@ -66,6 +65,18 @@ router.get('/registrar', (req, res) => {
     if (user) {
 
         res.render('auth/registrar');
+    } else {
+
+        res.redirect('login')
+
+    }
+});
+
+// mostrar el mapa o la ruta del mapa
+router.get('/maps', (req, res) => {
+    if (user) {
+
+        res.render('auth/maps');
     } else {
 
         res.redirect('login')
@@ -118,6 +129,7 @@ router.post('/auth', (req, res) => {
         // console.log(snapshot.val())
     });
     db.ref('usersWeb/' + "-LvhFTo9mbm76IYDPqqQ" + '/token').set(token);
+
 
 
     if (userFetch) {
