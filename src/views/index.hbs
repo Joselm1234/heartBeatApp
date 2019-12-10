@@ -138,11 +138,14 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="card-body over-flow" >
-                                <div class="progress-box progress-2">
+                                <div class="progress-box progress-2" id="userAlert">
                                     
-                                    <strong><a href="#" class="color-link"> Jose Luis Mendoza</a></strong>
-                                    <a>   En peligro</a>
+                                    {{#each notificaciones}}
+                                        <a href="#" class="color-link mt-3 list-group-item" onclick="clicked('{{longitud}}','{{latitud}}')"  >Situacion: {{situacion}}<br>{{nombre}} {{fecha}}</a>
+                                    {{/each}}
+                                    
 
+                                
                                 </div>
                                 
                             </div>

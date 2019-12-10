@@ -3432,6 +3432,8 @@ footer.site-footer .footer-inner a {
 
 .color-link {
     color: #000;
+    text-decoration: blue;
+    background: rgb(245, 245, 245);
 }
 
 

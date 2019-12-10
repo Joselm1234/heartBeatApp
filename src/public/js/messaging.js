@@ -18,9 +18,10 @@ var messaging = firebase.messaging();
 function initFirebaseMessagingRegistration() {
     messaging.requestPermission()
         .then(function() {
-            messageElement.innerHTML = "Got notification permission";
+            //messageElement.innerHTML = "Got notification permission";
             console.log("Got notification permission");
             messaging.getToken().then(function(token) {
+                console.log(token)
                 document.getElementById("token").value = token;
             });
             return messaging.getToken();
@@ -33,7 +34,7 @@ function initFirebaseMessagingRegistration() {
             tokenElement.innerHTML = "Token is " + token;
         })
         .catch(function(err) {
-            errorElement.innerHTML = "Error: " + err;
+            //errorElement.innerHTML = "Error: " + err;
             console.log("Didn't get notification permission", err);
         });
 }
@@ -48,6 +49,13 @@ messaging.onMessage(function(payload) {
         alertify.set('notifier', 'delay', 15);
         alertify.warning('========Precaucion========  El usuario: ' + payload.data.nombre + ' està presentando anomalìas cardiacas');
         alertify.set('notifier', 'delay', delay);
+
+        var userAlert = document.getElementById('userAlert');
+        var newElment = document.createElement("button");
+        newElment = document.appendChild( payload.data.nombre );
+        userAlert.innerHTML = newElment;
+
+
     } else if (payload.data.situacion === "'Peligro") {
 
         var delay1 = alertify.get('notifier', 'delay');
@@ -56,6 +64,8 @@ messaging.onMessage(function(payload) {
         alertify.set('notifier', 'delay1', delay1);
 
     }
+
+
 
     notificationElement.innerHTML = notificationElement.innerHTML + " " + payload.nombre;
 
@@ -71,3 +81,8 @@ messaging.onTokenRefresh(function() {
             console.log('Unable to retrieve refreshed token ', err);
         });
 });
+
+
+function clicked(l,l1){
+    console.log(l +' '+l1)
+}
