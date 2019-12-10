@@ -77,6 +77,15 @@
 
         messaging.onMessage(function (payload) {
             console.log("Message received. ", JSON.stringify(payload));
+            var obj = JSON.stringify(payload);
+                var contador=0;
+                for (const prop in obj) {
+                    contador++;
+                    if(contador==2){
+                        var segundo=obj[prop];
+                        alert(segundo.longitud);
+                    }
+                }
             notificationElement.innerHTML = notificationElement.innerHTML + " " + payload.data.notification;
         });
         messaging.onTokenRefresh(function () {
