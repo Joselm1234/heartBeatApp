@@ -39,8 +39,12 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.12.0/alertify.min.js"></script>
-
-
+    <!--libreria del mapas-->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css' type='text/css' />
+    
 </head>
 
 <body>
@@ -79,14 +83,11 @@
     <!--datatable js-->
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-
-   
-    <script>
-        messageElement = document.getElementById("message")
-        tokenElement = document.getElementById("token")
-        notificationElement = document.getElementById("notification")
-        errorElement = document.getElementById("error")
-    </script>
+    <!--Libreria para el mapa-->
+    <script src="https://unpkg.com/mapbox@1.0.0-beta9/dist/mapbox-sdk.min.js"></script>
+ 
+    <script src="./js/maps.js"></script>
+     
     <!--button class="btn btn-primary" onclick="initFirebaseMessagingRegistration()">Enable Firebase Messaging</button-->
     <script>
         $(document).ready(function () {

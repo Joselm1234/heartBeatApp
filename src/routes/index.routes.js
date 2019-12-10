@@ -1,4 +1,3 @@
-
 const { Router } = require('express');
 const router = Router();
 var firebase = require("firebase");
@@ -18,9 +17,9 @@ const firebaseConfig = {
     messagingSenderId: "199806822412",
     appId: "1:199806822412:web:e7ac270d543ec9c4456629",
     measurementId: "G-3GWR0EL2DG"
-  };
+};
 
-  
+
 
 // Inicializando base de datos
 firebase.initializeApp(firebaseConfig);
@@ -33,7 +32,7 @@ const db = firebase.database()
 var user;
 firebase.auth().onAuthStateChanged((data) => {
     user = data
-    // console.log(user);
+        // console.log(user);
 })
 
 // pagina de inicio
@@ -58,6 +57,18 @@ router.get('/registrar', (req, res) => {
     if (user) {
 
         res.render('auth/registrar');
+    } else {
+
+        res.redirect('login')
+
+    }
+});
+
+// mostrar el mapa o la ruta del mapa
+router.get('/maps', (req, res) => {
+    if (user) {
+
+        res.render('auth/maps');
     } else {
 
         res.redirect('login')
@@ -103,32 +114,32 @@ router.post('/auth', (req, res) => {
     var pass = req.body.password;
     var token = req.body.token;
     var error;
-   // console.log("el token funciona: ",token)
+    // console.log("el token funciona: ",token)
     let userFetch = false;
-    db.ref('usersWeb').orderByChild('correo').equalTo(email).on('child_added',(snapshot)=>{
-            userFetch = true
+    db.ref('usersWeb').orderByChild('correo').equalTo(email).on('child_added', (snapshot) => {
+        userFetch = true
             // console.log(snapshot.val())
     });
     db.ref('usersWeb/' + "-LvhFTo9mbm76IYDPqqQ" + '/token').set(token);
 
 
 
-    if(userFetch){
+    if (userFetch) {
 
-        firebase.auth().signInWithEmailAndPassword(email, pass).then((data)=>{
+        firebase.auth().signInWithEmailAndPassword(email, pass).then((data) => {
             // console.log(data)
             res.redirect('/');
-        }).catch((err)=> {
+        }).catch((err) => {
             error = err.code;
-            res.render('auth/login',{error:'Usuario o Contraseña incorrecta'}); 
-            error  = ''
-          });
-      
+            res.render('auth/login', { error: 'Usuario o Contraseña incorrecta' });
+            error = ''
+        });
+
     } else {
 
-        res.render('auth/login',{error:'Usuario o Contraseña incorrecta'}); 
+        res.render('auth/login', { error: 'Usuario o Contraseña incorrecta' });
         error = ''
-      
+
     }
 });
 
