@@ -1,5 +1,5 @@
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
+// Your web app's Firebase configuration
+var firebaseConfig = {
     apiKey: "AIzaSyA_djeuNUIgtJ4tk5HQvXAk75woOILe1ts",
     authDomain: "heartbeatapp7.firebaseapp.com",
     databaseURL: "https://heartbeatapp7.firebaseio.com",
@@ -20,7 +20,7 @@ function initFirebaseMessagingRegistration() {
         .then(function () {
             messageElement.innerHTML = "Got notification permission";
             console.log("Got notification permission");
-            messaging.getToken().then(function(token){
+            messaging.getToken().then(function (token) {
                 document.getElementById("token").value = token;
             })
             return messaging.getToken();
@@ -28,7 +28,7 @@ function initFirebaseMessagingRegistration() {
         .then(function (token) {
             // print the token on the HTML page
             //console.log(token)
-            document.getElementById("btnSubmit").type="submit";
+            document.getElementById("btnSubmit").type = "submit";
             document.getElementById("btnSubmit").click();
             tokenElement.innerHTML = "Token is " + token;
         })
@@ -39,9 +39,11 @@ function initFirebaseMessagingRegistration() {
 }
 
 messaging.onMessage(function (payload) {
-    console.log("Message received. ", JSON.stringify(payload));
-    const notification = JSON.stringify(payload);
-    notificationElement.innerHTML = notificationElement.innerHTML + " " + notification;
+    // console.log("Message received. ", JSON.stringify(payload));
+    // const notification = JSON.stringify(payload);
+    console.log(payload.data.nombre);
+    
+    notificationElement.innerHTML = notificationElement.innerHTML + " " + payload.nombre;
 
 });
 

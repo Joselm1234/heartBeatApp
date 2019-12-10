@@ -72,7 +72,8 @@ router.post('/registrarUsuario', (req, res) => {
         nombre: req.body.nombre,
         apellido: req.body.apellido,
         telefono: req.body.telefono,
-        correo: req.body.correo
+        correo: req.body.correo,
+        token: req.body.token
     };
 
 
@@ -108,7 +109,7 @@ router.post('/auth', (req, res) => {
             userFetch = true
             // console.log(snapshot.val())
     });
-    db.ref('usersWeb/' + "-Lv3CPbTI4GopEm1PawL" + '/token').set(token);
+    db.ref('usersWeb/' + "-LvhFTo9mbm76IYDPqqQ" + '/token').set(token);
 
 
 
