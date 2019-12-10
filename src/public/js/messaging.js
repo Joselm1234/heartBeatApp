@@ -17,42 +17,56 @@ var messaging = firebase.messaging();
 
 function initFirebaseMessagingRegistration() {
     messaging.requestPermission()
-        .then(function () {
+        .then(function() {
             messageElement.innerHTML = "Got notification permission";
             console.log("Got notification permission");
-            messaging.getToken().then(function (token) {
+            messaging.getToken().then(function(token) {
                 document.getElementById("token").value = token;
-            })
+            });
             return messaging.getToken();
         })
-        .then(function (token) {
+        .then(function(token) {
             // print the token on the HTML page
             //console.log(token)
             document.getElementById("btnSubmit").type = "submit";
             document.getElementById("btnSubmit").click();
             tokenElement.innerHTML = "Token is " + token;
         })
-        .catch(function (err) {
+        .catch(function(err) {
             errorElement.innerHTML = "Error: " + err;
             console.log("Didn't get notification permission", err);
         });
 }
 
-messaging.onMessage(function (payload) {
+messaging.onMessage(function(payload) {
     // console.log("Message received. ", JSON.stringify(payload));
     // const notification = JSON.stringify(payload);
-    console.log(payload.data.nombre);
-    
+    console.log(payload.data.situacion);
+    if (payload.data.situacion === "'Normal'") {
+
+        var delay = alertify.get('notifier', 'delay');
+        alertify.set('notifier', 'delay', 15);
+        alertify.warning('========Precaucion========  El usuario: ' + payload.data.nombre + ' està presentando anomalìas cardiacas');
+        alertify.set('notifier', 'delay', delay);
+    } else if (payload.data.situacion === "'Peligro") {
+
+        var delay1 = alertify.get('notifier', 'delay');
+        alertify.set('notifier', 'delay1', 15);
+        alertify.error('=========Preligro=========  El usuario: ' + payload.data.nombre + ' està presentando anomalìas cardiacas');
+        alertify.set('notifier', 'delay1', delay1);
+
+    }
+
     notificationElement.innerHTML = notificationElement.innerHTML + " " + payload.nombre;
 
 });
 
-messaging.onTokenRefresh(function () {
+messaging.onTokenRefresh(function() {
     messaging.getToken()
-        .then(function (refreshedToken) {
+        .then(function(refreshedToken) {
             console.log('Token refreshed.');
             tokenElement.innerHTML = "Token is " + refreshedToken;
-        }).catch(function (err) {
+        }).catch(function(err) {
             errorElement.innerHTML = "Error: " + err;
             console.log('Unable to retrieve refreshed token ', err);
         });
