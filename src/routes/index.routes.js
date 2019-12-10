@@ -43,13 +43,10 @@ router.get('/', (req, res) => {
         //extrae de la base de datos los usuarios moviles y los cuenta
         db.ref('Usuario').once('value', (snapshot) => {
             usuarios = snapshot.numChildren();
+            res.render('index', {  cantidadDeUsuarios:usuarios});
 
         })
-        db.ref('Notificaciones').once('value', (snapshot) => {
-            const notificacion = snapshot.val();
-            
-            res.render('index', { notificaciones: notificacion });
-        });
+      
         /*cantidadDeUsuarios: usuarios ,*/
 
     } else {
@@ -75,8 +72,12 @@ router.get('/registrar', (req, res) => {
 // mostrar el mapa o la ruta del mapa
 router.get('/maps', (req, res) => {
     if (user) {
-
-        res.render('auth/maps');
+        db.ref('Notificaciones').once('value', (snapshot) => {
+            const notificacion = snapshot.val();
+            
+            res.render('maps', { notificaciones: notificacion });
+        });
+       // res.render('maps');
     } else {
 
         res.redirect('login')

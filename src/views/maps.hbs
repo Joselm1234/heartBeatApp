@@ -1,4 +1,39 @@
-<!-- Left Panel -->
+<!--div class="container">
+
+    </div>
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="card">
+                <div class="card-body">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Datos del paciente</h2>
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Nombre:</strong> José Luis Mendoza Rodríguez </li>
+                        <li class="list-group-item"><strong>Fecha:</strong> 2019-12-04 06:00 p. m. </li>
+                        <li class="list-group-item"><strong>Latitud:</strong> 19.264835 </li>
+                        <li class="list-group-item"><strong>Longitud:</strong> -70.4849013</li>
+                        <li class="list-group-item"><strong>Pulso:</strong> 86</li>
+                        <li class="list-group-item"><strong>Situacion:</strong> Normal</li>
+                        <li class="list-group-item"><strong>Dianostico:</strong> Paciente con 34 años de edad, SI tiene antecedentes cardiacos, NO tiene factor de riesgo, de sexo Masculino</li>
+                    </ul>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div-->
+
+
+
+
+    <!-- Left Panel -->
 <aside id="left-panel" class="left-panel">
     <nav class="navbar navbar-expand-sm navbar-default">
         <div id="main-menu" class="main-menu collapse navbar-collapse">
@@ -63,83 +98,27 @@
         <!-- Animated -->
         <div class="animated fadeIn">
             <!-- Widgets  -->
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="stat-widget-five">
-                                <div class="stat-icon dib flat-color-6">
-                                    <i class="ti-info-alt"></i>
-                                </div>
-                                <div class="stat-content">
-                                    <div class="text-left dib">
-                                        <div class="stat-text">$<span class="count">23569</span></div>
-                                        <div class="stat-heading">Precaución</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="stat-widget-five">
-                                <div class="stat-icon flat-color-4">
-                                    <i class="ti-na"></i>
-                                </div>
-                                <div class="stat-content">
-                                    <div class="text-left">
-                                        <div class="stat-text"><span class="count">349</span></div>
-                                        <div class="stat-heading">Peligro</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="stat-widget-five">
-                                <div class="stat-icon dib flat-color-7">
-                                    <i class="pe-7s-users"></i>
-                                </div>
-                                <div class="stat-content">
-                                    <div class="text-left dib">
-                                        <div class="stat-text"><span class="count">{{cantidadDeUsuarios}}</span></div>
-                                        <div class="stat-heading">Usuarios App</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+         
 
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body" style="background-color: #fa1414; color: #ffffff">
-                            <h4 class="box-title">% de Notificaciones </h4>
+                            <h4 class="box-title">Ubicar usuario </h4>
 
                         </div>
                         <div class="btn-group" role="group" aria-label="Third group" style="margin-left: auto;">
-                            <a href="/" class="btn btn-light"><i class="fa ti-reload -off"></i></a>
+                            <button type="button" class="btn btn-light"><i class="fa ti-reload -off"></i></button>
                         </div>
                         <div class="row">
                             <div class="col-lg-8">
                                 <div class="card-body">
                                     <!-- <canvas id="TrafficChart"></canvas>   -->
-                                    <!--div id="map"></div-->
-                                    <canvas id="doughnut-chart"></canvas>
+                                    <div id="map"></div>
+                                    <!--canvas id="doughnut-chart"></canvas-->
                                 </div>
                             </div>
-                            <!--div class="col-lg-4">
+                            <div class="col-lg-4">
                                 <div class="card-body over-flow">
                                     <div class="progress-box progress-2" id="userAlert">
 
@@ -153,8 +132,8 @@
                                     </div>
 
                                 </div>
-                               
-                            </div-->
+                                <!-- /.card-body -->
+                            </div>
 
                         </div>
 
