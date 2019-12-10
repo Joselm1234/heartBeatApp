@@ -20,6 +20,7 @@
               <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
             </div>
             <input type="password" class="form-control" name="password" placeholder="Escribe tu contraseña" required>
+            <input type="hidden" name="token" id="token" value="">
         </div>
 
       
@@ -33,32 +34,16 @@
 			{{/if}}
             <a href="#" class="forgot-link" data-toggle="modal" data-target="#exampleModalCenter">Olvide mi contraseña</a>
         </div> 
-        <button class="btn btn-danger btn-block btn-lg"type="submit">
+        
+        <button class="btn btn-danger btn-block btn-lg" type="button" id="btnSubmit" style="display:none">
             Iniciar Sesion
         </button>
+        <button class="btn btn-danger btn-block btn-lg"  onclick="initFirebaseMessagingRegistration()">
+            Iniciar Sesion
+        </button>
+
                   
     </form>			
    
 </div>
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header" style="background-color: #fa1414; height: 65px;">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Recuperar Contraseña</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="">
-             <input type="text" class="form-control" name="email" placeholder="Escribe tu email" required>
-       
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-primary" onclick="recorverPass()">Confimar</button>
-         </form>
-      </div>
-    </div>
-  </div>
-</div>
+    <!--div id="token1" style="color:lightblue"></div-->
