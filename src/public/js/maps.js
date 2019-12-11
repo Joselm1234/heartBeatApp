@@ -1,11 +1,17 @@
 
-function Notificaciones(longitud, latitud) {
+function Notificaciones(longitud, latitud, nombre, fecha, pulso,dianostico) {
     var longitudP;
     var latitudP;
     var longitudP = parseFloat(longitud)
     var latitudP = parseFloat(latitud);
     
-
+    document.getElementById('uNombre').innerHTML = nombre
+    document.getElementById('uFecha').innerHTML = fecha
+    document.getElementById('uPulso').innerHTML = pulso
+    
+     document.getElementById('uDianostico').innerHTML = dianostico
+    document.getElementById('uLatitud').innerHTML = latitudP
+    document.getElementById('uLongitud').innerHTML = longitudP
 
 
 
@@ -42,5 +48,9 @@ function Notificaciones(longitud, latitud) {
         trackUserLocation: true
     }));
     new mapboxgl.Marker().setLngLat(coordinates).addTo(map);
+
+
+
+
 }
 

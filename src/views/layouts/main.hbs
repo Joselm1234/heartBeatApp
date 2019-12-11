@@ -114,22 +114,8 @@
             });
         });
     </script>
-
-    <script>
-        //recuperar contreaseña
-        var recorverPass = function(){
-            console.log('hola');
-            var auth = firebase.auth();
-            var emailAddress = $('email').val();
-
-            auth.sendPasswordResetEmail(emailAddress)
-            .then(function(){
-                alert('Se ha enviado un correo a su cuenta siga los paso');
-            },function(error){
-                console.log(error);
-            })
-        };
-    </script>
+    <script src="./js/recuperar-cts.js"></script>
+    
 </body>
 
 </html>

@@ -39,14 +39,33 @@ firebase.auth().onAuthStateChanged((data) => {
 router.get('/', (req, res) => {
     // console.log(user)
     let usuarios;
+    let peligro = 0;
+    let precaucion;
     if (user) {
         //extrae de la base de datos los usuarios moviles y los cuenta
         db.ref('Usuario').once('value', (snapshot) => {
             usuarios = snapshot.numChildren();
-            res.render('index', {  cantidadDeUsuarios:usuarios});
-
+            // res.render('index', {  cantidadDeUsuarios:usuarios});
+            db.ref('Notificaciones').orderByChild('situacion').equalTo("'Peligro'").on('value', (snapshot) => {
+                
+               peligro = snapshot.numChildren()
+               console.log(peligro)
+               db.ref('Notificaciones').orderByChild('situacion').equalTo("'Precaucion'").on('value', (snapshot) => {
+                
+                precaucion = snapshot.numChildren()
+                console.log(precaucion)
+                res.render('index', {cantidadDePrecaucion: precaucion, cantidadDeUsuarios: usuarios,  cantidadDePeligro:peligro});
+     
+             })
+    
+            })
+            
         })
+
+    
       
+        
+     
         /*cantidadDeUsuarios: usuarios ,*/
 
     } else {
@@ -123,7 +142,7 @@ router.post('/auth', (req, res) => {
     var pass = req.body.password;
     var token = req.body.token;
     var error;
-    console.log("el token funciona: ", token)
+   // console.log("el token funciona: ", token)
     let userFetch = false;
     db.ref('usersWeb').orderByChild('correo').equalTo(email).on('child_added', (snapshot) => {
         userFetch = true

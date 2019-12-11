@@ -1,5 +1,5 @@
 // Your web app's Firebase configuration
-var firebaseConfig = {
+/*var firebaseConfig = {
     apiKey: "AIzaSyA_djeuNUIgtJ4tk5HQvXAk75woOILe1ts",
     authDomain: "heartbeatapp7.firebaseapp.com",
     databaseURL: "https://heartbeatapp7.firebaseio.com",
@@ -8,10 +8,10 @@ var firebaseConfig = {
     messagingSenderId: "199806822412",
     appId: "1:199806822412:web:e7ac270d543ec9c4456629",
     measurementId: "G-3GWR0EL2DG"
-};
+};*/
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
+//firebase.initializeApp(firebaseConfig);
+firebase.initializeApp({'messagingSenderId':'199806822412'});
 //firebase.initializeApp({ 'messagingSenderId': '199806822412' });
 var messaging = firebase.messaging();
 
@@ -43,7 +43,7 @@ messaging.onMessage(function(payload) {
     // console.log("Message received. ", JSON.stringify(payload));
     // const notification = JSON.stringify(payload);
     console.log(payload.data.situacion);
-    if (payload.data.situacion === "'Normal'") {
+    if (payload.data.situacion === "'Precaucion'") {
 
         var delay = alertify.get('notifier', 'delay');
         alertify.set('notifier', 'delay', 15);
@@ -56,7 +56,7 @@ messaging.onMessage(function(payload) {
         userAlert.innerHTML = newElment;
 
 
-    } else if (payload.data.situacion === "'Peligro") {
+    } else if (payload.data.situacion === "'Peligro'") {
 
         var delay1 = alertify.get('notifier', 'delay');
         alertify.set('notifier', 'delay1', 15);
@@ -66,8 +66,8 @@ messaging.onMessage(function(payload) {
     }
 
 
-
-    notificationElement.innerHTML = notificationElement.innerHTML + " " + payload.nombre;
+    //document.getElementById('notificaciones').click()
+    //notificationElement.innerHTML = notificationElement.innerHTML + " " + payload.nombre;
 
 });
 
@@ -81,8 +81,3 @@ messaging.onTokenRefresh(function() {
             console.log('Unable to retrieve refreshed token ', err);
         });
 });
-
-
-function clicked(l,l1){
-    console.log(l +' '+l1)
-}

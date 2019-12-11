@@ -1,3 +1,7 @@
+precaucion =document.getElementById('precaucion').value
+peligro =document.getElementById('peligro').value
+
+
 new Chart(document.getElementById("doughnut-chart"), {
     type: 'doughnut',
     data: {
@@ -5,7 +9,7 @@ new Chart(document.getElementById("doughnut-chart"), {
         datasets: [{
             label: "Population (millions)",
             backgroundColor: ["#fa1414", "#eab105"],
-            data: [2478, 5267]
+            data: [peligro,precaucion]
         }]
     }
 });

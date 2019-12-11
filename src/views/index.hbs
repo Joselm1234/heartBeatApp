@@ -12,7 +12,7 @@
                     <a href="/listarUsuarios"><i class="menu-icon fa fa-list"></i>Lista de Usuarios</a>
                 </li>
                 <li class="#">
-                    <a href="/maps" ><i class="menu-icon fa ti-location-arrow"></i>Mapa</a>
+                    <a href="/maps"><i class="menu-icon fa ti-location-arrow"></i>Mapa</a>
                 </li>
                 <li class="#">
                     <a href="/salir"><i class="menu-icon fa ti-power-off"></i>Salir</a>
@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="stat-content">
                                     <div class="text-left dib">
-                                        <div class="stat-text">$<span class="count">23569</span></div>
+                                        <div class="stat-text"><span class="count">{{cantidadDePrecaucion}}</span></div>
                                         <div class="stat-heading">Precaución</div>
                                     </div>
                                 </div>
@@ -93,7 +93,7 @@
                                 </div>
                                 <div class="stat-content">
                                     <div class="text-left">
-                                        <div class="stat-text"><span class="count">349</span></div>
+                                        <div class="stat-text"><span class="count">{{cantidadDePeligro}}</span></div>
                                         <div class="stat-heading">Peligro</div>
                                     </div>
                                 </div>
@@ -128,10 +128,9 @@
                             <h4 class="box-title">% de Notificaciones </h4>
 
                         </div>
-                        <div class="btn-group" role="group" aria-label="Third group" style="margin-left: auto;">
-                            <a href="/" class="btn btn-light"><i class="fa ti-reload -off"></i></a>
-                        </div>
+
                         <div class="row">
+                            <div class="col-lg-2"></div>
                             <div class="col-lg-8">
                                 <div class="card-body">
                                     <!-- <canvas id="TrafficChart"></canvas>   -->
@@ -139,6 +138,7 @@
                                     <canvas id="doughnut-chart"></canvas>
                                 </div>
                             </div>
+                            <div class="col-lg-2"></div>
                             <!--div class="col-lg-4">
                                 <div class="card-body over-flow">
                                     <div class="progress-box progress-2" id="userAlert">
@@ -180,6 +180,5 @@
     <div class="clearfix"></div>
 </div>
 
-
-<script>
-</script>
+<input type="hidden" id="precaucion" value="{{cantidadDePrecaucion}}">
+<input type="hidden" id="peligro" value="{{cantidadDePeligro}}">
