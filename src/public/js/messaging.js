@@ -49,7 +49,7 @@ messaging.onMessage(function(payload) {
         alertify.set('notifier', 'delay', 15);
         alertify.warning('========Precaucion========  El usuario: ' + payload.data.nombre + ' està presentando anomalìas cardiacas');
         alertify.set('notifier', 'delay', delay);
-
+        document.getElementById('actualizar').click();
         var userAlert = document.getElementById('userAlert');
         var newElment = document.createElement("button");
         newElment = document.appendChild( payload.data.nombre );
@@ -62,11 +62,11 @@ messaging.onMessage(function(payload) {
         alertify.set('notifier', 'delay1', 15);
         alertify.error('=========Preligro=========  El usuario: ' + payload.data.nombre + ' està presentando anomalìas cardiacas');
         alertify.set('notifier', 'delay1', delay1);
-
+        document.getElementById('actualizar').click();
     }
 
 
-    document.getElementById('actualizar').click();
+    
     //notificationElement.innerHTML = notificationElement.innerHTML + " " + payload.nombre;
 
 });
