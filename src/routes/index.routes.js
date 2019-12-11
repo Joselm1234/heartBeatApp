@@ -46,11 +46,11 @@ router.get('/', (req, res) => {
         db.ref('Usuario').once('value', (snapshot) => {
             usuarios = snapshot.numChildren();
             // res.render('index', {  cantidadDeUsuarios:usuarios});
-            db.ref('Notificaciones').orderByChild('situacion').equalTo("'Peligro'").on('value', (snapshot) => {
+            db.ref('Notificaciones').orderByChild('situacion').equalTo("'Peligro'").once('value', (snapshot) => {
                 
                peligro = snapshot.numChildren()
                console.log(peligro)
-               db.ref('Notificaciones').orderByChild('situacion').equalTo("'Precaucion'").on('value', (snapshot) => {
+               db.ref('Notificaciones').orderByChild('situacion').equalTo("'Precaucion'").once('value', (snapshot) => {
                 
                 precaucion = snapshot.numChildren()
                 console.log(precaucion)

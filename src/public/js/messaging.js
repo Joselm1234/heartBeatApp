@@ -66,7 +66,7 @@ messaging.onMessage(function(payload) {
     }
 
 
-    //document.getElementById('notificaciones').click()
+    document.getElementById('actualizar').click();
     //notificationElement.innerHTML = notificationElement.innerHTML + " " + payload.nombre;
 
 });
